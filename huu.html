@@ -18,7 +18,7 @@
             color: white;
             text-align: center;
             padding: 5px;
-            font-size: 1.2rem;
+            font-size: 0.8rem;
         }
         nav {
             display: flex;
@@ -57,7 +57,7 @@
             border-radius: 8px;
             cursor: pointer;
         }
-        .modal {
+        .instagram-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -69,24 +69,27 @@
             align-items: center;
             z-index: 1000;
         }
-        .modal-content {
+        .instagram-content {
             width: 75%;
             max-width: 800px;
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        .modal img {
+        .instagram-img {
             width: 100%;
-            height: 75%;
+            height: 70%;
             object-fit: cover;
         }
-        .modal .note {
+        .instagram-note {
             padding: 10px;
-            text-align: center;
+            text-align: left;
             font-size: 1rem;
+            border-top: 1px solid #ddd;
         }
-        .modal-close {
+        .instagram-close {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -118,19 +121,26 @@
         }
         .final-note {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 50px;
             font-size: 1.5rem;
             font-weight: bold;
             color: #333;
         }
+        .password-section {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
-    <audio autoplay loop>
-        <source src="wannabe-yours.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
     <header>
         <h1>HAPPY ONE YEAR RELATIONSHIP ANNIVERSARY BABE:3333</h1>
     </header>
@@ -149,38 +159,19 @@
 
     <section id="moments" data-color="#ffc0cb">
         <h2>Our Special Moments</h2>
-        <div class="gallery">
-            <!-- Add up to 30 photos -->
-            <img src="photo1.jpg" alt="Moment">
-            <img src="photo2.jpg" alt="Moment">
-            <img src="photo3.jpg" alt="Moment">
-            <img src="photo4.jpg" alt="Moment">
-            <img src="photo5.jpg" alt="Moment">
-            <img src="photo6.jpg" alt="Moment">
-            <img src="photo7.jpg" alt="Moment">
-            <img src="photo8.jpg" alt="Moment">
-            <img src="photo9.jpg" alt="Moment">
-            <img src="photo10.jpg" alt="Moment">
-            <img src="photo11.jpg" alt="Moment">
-            <img src="photo12.jpg" alt="Moment">
-            <img src="photo13.jpg" alt="Moment">
-            <img src="photo14.jpg" alt="Moment">
-            <img src="photo15.jpg" alt="Moment">
-            <img src="photo16.jpg" alt="Moment">
-            <img src="photo17.jpg" alt="Moment">
-            <img src="photo18.jpg" alt="Moment">
-            <img src="photo19.jpg" alt="Moment">
-            <img src="photo20.jpg" alt="Moment">
-            <img src="photo21.jpg" alt="Moment">
-            <img src="photo22.jpg" alt="Moment">
-            <img src="photo23.jpg" alt="Moment">
-            <img src="photo24.jpg" alt="Moment">
-            <img src="photo25.jpg" alt="Moment">
-            <img src="photo26.jpg" alt="Moment">
-            <img src="photo27.jpg" alt="Moment">
-            <img src="photo28.jpg" alt="Moment">
-            <img src="photo29.jpg" alt="Moment">
-            <img src="photo30.jpg" alt="Moment">
+        <div class="password-section" id="passwordSection">
+            <h3>Enter Password to Access Gallery</h3>
+            <input type="password" id="galleryPassword" placeholder="Enter Password">
+            <button onclick="validatePassword()">Submit</button>
+            <p id="passwordMessage" style="color: red; display: none;">Incorrect password. Please try again.</p>
+        </div>
+        <div class="gallery" id="gallery" style="display: none;">
+            <!-- Add up to 60 photos -->
+            <script>
+                for (let i = 1; i <= 60; i++) {
+                    document.write(`<img src="photo${i}.jpg" alt="Moment" onclick="showImage(this, 'Story behind photo ${i}')">`);
+                }
+            </script>
         </div>
     </section>
 
@@ -192,5 +183,23 @@
             <li>Exploring new places together</li>
             <li>Continuing to support and love each other</li>
         </ul>
-        <p class="final-note">BABY THIS IS JUST A BEGINNING... MANY MORE ANNIVERSARY ARE ON THE WAY TO BE CELEBRATED...</p>
-   
+    </section>
+
+    <p class="final-note">BABY THIS IS JUST A BEGINNING... MANY MORE ANNIVERSARY ARE ON THE WAY TO BE CELEBRATED...</p>
+
+    <footer>
+        <button class="close-footer" onclick="this.parentElement.style.display='none';">&times;</button>
+        <p>Happy Anniversary!</p>
+    </footer>
+
+    <div class="instagram-modal" id="instagramModal">
+        <button class="instagram-close" onclick="closeInstagramModal()">&times;</button>
+        <div class="instagram-content">
+            <img id="instagramImage" src="" alt="" class="instagram-img">
+            <div class="instagram-note" id="instagramNote"></div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px;">
+        <audio controls>
+            <source src="wannabe-yours.mp3" type
